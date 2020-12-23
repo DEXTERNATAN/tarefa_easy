@@ -1,6 +1,7 @@
-# tarefaeasy
 
-A new Flutter project.
+# Tarefa Easy
+
+Projeto desenvolvido em flutter para o gerenciamento de tarefas do dia-a-dia. Totalmente gratuito e disponivel nas lojas de aplicativos.
 
 ## Getting Started
 
