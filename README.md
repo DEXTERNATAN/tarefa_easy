@@ -3,6 +3,11 @@
 
 Projeto desenvolvido em flutter para o gerenciamento de tarefas do dia-a-dia. Totalmente gratuito e disponivel nas lojas de aplicativos.
 
+# Tecnologias
+
+- Flutter
+- Firebase
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
