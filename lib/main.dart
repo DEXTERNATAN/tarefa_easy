@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,7 +16,32 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final _todoController = TextEditingController();
+
   List _toDoList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _readData().then((data) {
+      setState(() {
+        _toDoList = json.decode(data);
+      });
+    });
+  }
+
+  void _addTodo() {
+    setState(() {
+      Map<String, dynamic> newTodo = Map();
+      newTodo['title'] = _todoController.text;
+      _todoController.text = '';
+      newTodo['ok'] = false;
+      _toDoList.add(newTodo);
+      _saveData();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,19 +58,42 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    controller: _todoController,
                     decoration: InputDecoration(
                         labelText: 'Nova Tarefa',
                         labelStyle: TextStyle(color: Colors.blueAccent)),
                   ),
                 ),
                 RaisedButton(
-                    color: Colors.blueAccent,
-                    child: Text('ADD'),
-                    textColor: Colors.white,
-                    onPressed: () {}),
+                  color: Colors.blueAccent,
+                  child: Text('ADD'),
+                  textColor: Colors.white,
+                  onPressed: _addTodo,
+                )
               ],
             ),
-          )
+          ),
+          Expanded(
+              child: ListView.builder(
+                  padding: EdgeInsets.only(top: 10.0),
+                  itemCount: _toDoList.length,
+                  itemBuilder: (context, index) {
+                    return CheckboxListTile(
+                        title: Text(_toDoList[index]['title']),
+                        value: _toDoList[index]['ok'],
+                        secondary: CircleAvatar(
+                          child: Icon(_toDoList[index]['ok']
+                              ? Icons.check
+                              : Icons.error),
+                        ),
+                        onChanged: (c) {
+                          print(c);
+                          setState(() {
+                            _toDoList[index]['ok'] = c;
+                            _saveData();
+                          });
+                        });
+                  }))
         ],
       ),
     );
