@@ -1,6 +1,12 @@
-# tarefaeasy
 
-A new Flutter project.
+# Tarefa Easy
+
+Projeto desenvolvido em flutter para o gerenciamento de tarefas do dia-a-dia. Totalmente gratuito e disponivel nas lojas de aplicativos.
+
+# Tecnologias
+
+- Flutter
+- Firebase
 
 ## Getting Started
 
@@ -14,4 +20,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-# tarefa_easy
